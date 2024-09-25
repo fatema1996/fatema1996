@@ -1,0 +1,1342 @@
+
+
+Data definition language is structre of the database object such as Create Table, Alter
+Data manupulation language is manupulating the data within database such as Insert Into, Update
+9.DROP TABLE command is used to remove the table from the database
+DROP TABLE EMPLOYEE_TBL
+
+CREATE TABLE EMPLOYEE_TBL(
+TEACHER_CODE INT primary key ,
+TEACHER_NAME VARCHAR (50),
+DOJ DATE ,
+
+);
+
+INSERT INTO EMPLOYEE_TBL VALUES (1001, 'ANAND', '2001-01-30' )
+INSERT INTO EMPLOYEE_TBL VALUES (1002, 'AMIT', '2007-09-05')
+INSERT INTO EMPLOYEE_TBL VALUES (1003, 'ANKIT', '2007-09-20')
+INSERT INTO EMPLOYEE_TBL VALUES (1004, 'BALBIR', '2010-02-15')
+INSERT INTO EMPLOYEE_TBL VALUES (1005, 'JASBIR', '2011-01-20');
+
+
+ALTER TABLE EMPLOYEE_TBL 
+ADD DEPARTMENT VARCHAR (30);
+
+
+
+
+3. to find null values from sql table for any column have to use IS NULL clause, here is below the example
+14. According to my table to geeting right output the query should be like that:
+
+SELECT * FROM Employee_TBL
+WHERE DEPARTMENT IS NULL;
+
+want to know about table details information like size type lenght we need to use EXECUTE STORE PROCEDURE comand
+
+EXEC sp_help 'EMPLOYEE_TBL';
+
+5.LIKE clause is used for pattern matching. 2 main characters is '%' which is used for matching for any sequence character and another one is  '_'  used for match single character
+
+SELECT * FROM EMPLOYEE_TBL
+WHERE TEACHER_NAME LIKE '%NAN%';
+
+SELECT * FROM EMPLOYEE_TBL
+WHERE TEACHER_NAME LIKE '_NAND';
+
+ORDER BY clause used for ascending decending order
+SELECT * FROM EMPLOYEE_TBL
+ORDER BY TEACHER_NAME ASC;
+
+
+
+
+
+
+11. DESC means larger/highest values come first  to short values descending order using order by clause
+
+SELECT * FROM EMPLOYEE_TBL
+ORDER BY TEACHER_NAME DESC;
+
+
+
+DISTINCT clause is used for eliminated the duplicate rows from the output
+
+SELECT DISTINCT Department
+FROM EMPLOYEE_TBL;
+
+
+8.at least one minimum number of column required in MYSQL to create table and also can allow that table null values.
+
+CREATE TABLE SALARY_TBL (
+EMP_ID INT
+);
+
+12.UPDATE clause is used for change pr modify existng  information of a table
+
+UPDATE EMPLOYEE_TBL
+SET DEPARTMENT = 'IT'
+WHERE TEACHER_CODE = 1001;
+
+
+
+
+
+UPDATE EMPLOYEE_TBL
+SET SALARY = '60000'
+WHERE TEACHER_CODE = 1001;
+
+13.Here I am creating TABLE different names where NO names begins from 'R' so I used The correct query according to my TABLE name so the correct query should be like that below to getting desired output:
+
+SELECT * FROM EMPLOYEE_TBL
+WHERE TEACHER_NAME LIKE 'A%';
+
+14.The right query should be like that using where and in so that can get right output
+
+SELECT * FROM EMPLOYEE_TBL
+WHERE DEPARTMENT IN ('Sales', 'IT');
+
+16. SELECT * FROM EMP ORDER BY NAME WHERE SALARY>=5000; in this query error is ORDER BY NAME placed before SALARY>=5000
+The right query should be 
+SELECT * FROM EMP 
+WHERE SALARY>=5000
+ORDER BY NAME ;
+
+
+
+17. (i)    Select 100+200 from dual; the output will return 300 because of this dual is special table so its shows only one row
+(ii) Select 100+200 from Sales; the output will return 300 but its repeated 5 times because Raj sales contains 5 records.
+
+18. DIfference between Equi-Join and Natural Join:
+Equi-Join: Explicit join condition with '=', includes all columns (including duplicates), provides more control over the join.
+Natural Join: Implicit join based on column with same names , removes duplicate columns in result, easier but less flexible and less controll over
+
+SELECT TEACHER_NAME,DOJ FROM EMPLOYEE_TBL WHERE TEACHER_NAME LIKE „%I%‟
+
+
+SELECT TEACHER_NAME,DOJ FROM EMPLOYEE_TBL WHERE TEACHER_NAME LIKE '%I%';
+
+SELECT * FROM EMPLOYEE_TBL WHERE DOJ LIKE „%-09-%‟;
+
+
+SELECT * FROM EMPLOYEE_TBL WHERE DOJ LIKE '%-09-%';
+
+
+
+
+
+ALTER TABLE EMPLOYEE_TBL 
+ADD SALARY DECIMAL(15, 2) ;
+
+to get  Average values in numeric  column in SQL have to use Avg () function
+
+SELECT AVG(Salary) as Avg_salary
+FROM EMPLOYEE_TBL
+WHERE Department = 'IT';
+
+21. This COUNT() queary will count only the rows where the Salary column is not NULL . If there is any null values this query will not included in Count
+This COUNT(*) function will showes all rows whether its null or not null
+SELECT COUNT(SALARY)
+FROM EMPLOYEE_TBL;
+
+SELECT COUNT(*) as number_of_row
+FROM EMPLOYEE_TBL;
+
+
+
+
+25.c. ALTER TABLE TABLE_NAME DROP COLUMN COLUMN_NAME  this is correct statements 
+
+ALTER TABLE EMPLOYEE_TBL
+DROP COLUMN Salary;
+
+22. Full from of SQL is Structured Query Language
+23. ans should be b. DELETE FROM TABLE_NAME to delete all record of table without deleting the table
+
+24. b.Only one record can be updated at a time using WHERE clause , this statement is wrong.
+SELECT * FROM EMPLOYEE_TBL;
+
+CREATE TABLE BOOK (
+BNO INT ,
+BNAME VARCHAR (40),
+AUTHOR VARCHAR (40),
+PUBLISHER VARCHAR (50),
+);
+
+DROP TABLE BOOK;
+
+
+INSERT INTO BOOK VALUES (101, 'A', 'D', 'X')
+INSERT INTO BOOK VALUES (102, 'B', 'E', 'Y')
+INSERT INTO BOOK VALUES (103, 'C', 'F', 'Z')
+
+SELECT * FROM BOOK;
+
+
+
+SELECT PUBLISHER FROM BOOK;
+
+to get a unique key have to use DISTINCT key
+
+SELECT DISTINCT PUBLISHER 
+FROM BOOK;
+
+27. Here, 
+MX = 1, MY = 1
+Insert (X = MX + 1 = 2, Y = 2 * MY + 1 = 3)
+New  MX = 2, MY = 3
+Insert (X = MX + 2 = 3, Y = 2 * MY + 1 = 7)
+NEW MX= 3, MY= 7
+Insert (X = MX + 1 = 4, Y = 2 * MY + 1 = 15)
+NEW MX= 4, MY= 15
+Insert (X = MX + 1 = 5, Y = 2 * MY + 1 = 15)
+NEW MX= 5, MY = 31
+Insert (X = MX + 1 = 6, Y = 2 * MY + 1 = 63)
+NEW MX= 6, MY= 63
+Insert (X = MX + 1 = 7, Y = 2 * MY + 1 = 127)
+
+NEW MX =7, MY= 127
+TABLE:    X      Y
+                1.       1
+                 2.       3
+                  3.       7 
+                  4         15   
+                   5.        31         
+                   6         63 
+                    7         127
+Ans should be A. 127
+
+CREATE TABLE T (
+X INT, 
+Y INT, 
+);
+
+DROP TABLE T
+
+
+
+INSERT INTO T VALUES (1, 1)
+
+SELECT * FROM T WHERE X= MX+1;
+
+DECLARE @MX INT, @MY INT, @i INT = 1;
+
+WHILE @i <= 128
+BEGIN
+-- Calculate MX and MY (max values of X and Y)
+SELECT @MX = MAX(X), @MY = MAX(Y) FROM T;
+-- Insert the new record
+INSERT INTO T (X, Y) VALUES (@MX + 1, 2 * @MY + 1);
+-- Increment the loop counter
+SET @i = @i + 1;
+END;
+
+SELECT Y FROM T WHERE X = 7;
+ 
+
+28. 
+MIN() gives lowest value of numeric data 
+MAX() gives highest value of numeric data
+SELECT MIN(X) FROM T;
+
+SELECT MAX(X) FROM T;
+
+
+
+
+
+
+
+
+SELECT * FROM T
+ORDER BY Y ASC;
+
+ 30. CHAR () is a fixed length data type and reserves always the specified number of characters of the actual string length
+VARCHAR () is a variable length data type and store only characters without any extra spaces
+
+CREATE TABLE ACCOUNT(
+ANO INT PRIMARY KEY,
+ANAME VARCHAR (50),
+ADDRESS VARCHAR (200),
+);
+
+DROP TABLE ACCOUNT;
+
+INSERT INTO ACCOUNT VALUES (101, 'Niraj Singh', 'Bangalore')
+INSERT INTO ACCOUNT VALUES (102, 'Rohan Gupta', 'Chennai')
+INSERT INTO ACCOUNT VALUES (103, 'Ali Reza', 'Hyderabad')
+INSERT INTO ACCOUNT VALUES (104, 'Rishabh Jain', 'Chennai')
+INSERT INTO ACCOUNT VALUES (105, 'Simran Kaur', 'Chandigarh');
+
+SELECT * FROM ACCOUNT;
+
+
+
+
+
+
+
+CREATE TABLE TRANSACT (
+TRNO VARCHAR (20),
+ANO INT,
+AMOUNT DECIMAL (15,2),
+TYPE VARCHAR (40),
+DOT DATE ,
+);
+
+DROP TABLE TRANSACT;
+
+INSERT INTO TRANSACT VALUES ('T001', 101, 2500,'WITHDRAW', '2017-12-21')
+INSERT INTO TRANSACT VALUES ('T002', 103, 3000, 'Deposit', '2017-06-01')
+INSERT INTO TRANSACT VALUES ('T003', 102, 2000, 'WITHDRAW','2017-05-12')
+INSERT INTO TRANSACT VALUES ('T004', 103, 1000, 'Deposit', '2017-10-22')
+INSERT INTO TRANSACT VALUES ('T005', 102, 12000, 'Deposit', '2017-11-06');
+
+SELECT * FROM TRANSACT;
+
+
+SELECT * FROM TRANSACT
+WHERE TYPE = 'Withdraw';
+
+
+
+
+
+
+
+
+SELECT ANO, AMOUNT
+FROM TRANSACT
+WHERE (TYPE = 'Deposit' OR TYPE = 'Withdraw')
+AND DOT BETWEEN '2017-05-01' AND '2017-05-31';
+
+
+SELECT MIN(DOT) AS First_Transaction_Date
+FROM TRANSACT
+WHERE ANO = 102;
+
+Select AMOUNT, DOT from TRANSACT where AMOUNT <= 3000;
+
+SELECT ANO, ANAME FROM ACCOUNT
+WHERE ADDRESS NOT IN ('CHENNAI', 'BANGALORE');
+
+SELECT DISTINCT ANO FROM TRANSACT;
+
+SELECT ANO, COUNT(*), MIN(AMOUNT) FROM TRANSACT GROUP BY ANO HAVING COUNT(*)> 1;
+
+SELECT COUNT(*), SUM(AMOUNT) FROM TRANSACT WHERE DOT <= '2017-10-01';
+
+
+
+
+
+
+
+
+
+
+31.
+
+CREATE TABLE SALGRADE (
+SGRADE VARCHAR(3) PRIMARY KEY,
+SALARY INT NOT NULL,
+HRA INT NOT NULL
+)
+CREATE TABLE EMPLOYEE (
+ECODE INT PRIMARY KEY,
+NAME VARCHAR(100) NOT NULL,
+DESIG VARCHAR(50),
+SGRADE VARCHAR(3),
+DOJ DATE,
+DOB DATE,
+FOREIGN KEY (SGRADE) REFERENCES SALGRADE(SGRADE)
+);
+
+INSERT INTO SALGRADE (SGRADE, SALARY, HRA)
+VALUES 
+('S01', 56000, 18000),
+('S02', 32000, 12000),
+('S03', 24000, 8000);
+
+INSERT INTO EMPLOYEE (ECODE, NAME, DESIG, SGRADE, DOJ, DOB)
+VALUES 
+(101, 'Vikrant', 'Executive', 'S03', '2003-03-23', '1980-01-13'),
+(102, 'Ravi', 'Head-IT', 'S02', '2010-02-12', '1987-07-22'),
+(103, 'John Cena', 'Receptionist', 'S03', '2009-06-24', '1983-02-24'),
+
+
+
+
+
+
+
+
+(105, 'Azhar Ansari', 'GM', 'S02', '2009-08-11', '1984-03-03'),
+(108, 'Priyam Sen', 'CEO', 'S01', '2004-12-29', '1982-01-19');
+
+
+SELECT * 
+FROM Employee 
+ORDER BY DOJ DESC;
+
+
+SELECT NAME, DESIG
+FROM EMPLOYEE
+WHERE SGRADE IN ('S02', 'S03');
+
+
+SELECT NAME, DESIG, SGRADE
+FROM EMPLOYEE
+WHERE YEAR(DOJ) = 2009;
+
+
+SELECT SGRADE, (SALARY * 12) AS ANNUAL_SALARY
+FROM SALGRADE;
+
+SELECT SGRADE, COUNT(*) AS EMPLOYEE_COUNT
+FROM EMPLOYEE
+GROUP BY SGRADE;
+
+
+
+
+
+
+
+
+
+SELECT E.NAME, E.DESIG, S.SALARY, S.HRA
+FROM EMPLOYEE E
+JOIN SALGRADE S ON E.SGRADE = S.SGRADE
+WHERE S.SALARY < 50000;
+
+SELECT MIN(DOJ) AS EARLIEST_JOIN_DATE, MAX(DOB) AS LATEST_BIRTH_DATE
+FROM EMPLOYEE;
+
+SELECT SGRADE, (SALARY + HRA) AS TOTAL_COMPENSATION
+FROM SALGRADE
+WHERE SGRADE = 'S02';
+
+SELECT COUNT(DISTINCT SGRADE) AS DISTINCT_SGRADES
+FROM EMPLOYEE;
+
+SELECT SUM(SALARY) AS TOTAL_SALARY, AVG(SALARY) AS AVERAGE_SALARY
+FROM SALGRADE;
+
+
+CREATE TABLE TRAINS (
+TNO INT PRIMARY KEY,
+TNAME VARCHAR(50),
+START VARCHAR(50),
+[END] VARCHAR(50)
+);
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE PASSENGERS (
+PNR VARCHAR(10) PRIMARY KEY,
+TNO INT,
+PNAME VARCHAR(50),
+GENDER VARCHAR(10),
+AGE INT,
+TRAVELDATE DATE,
+FOREIGN KEY (TNO) REFERENCES TRAINS(TNO)
+);
+
+
+INSERT INTO TRAINS (TNO, TNAME, START, [END])
+VALUES
+(11096, 'Ahimsa Express', 'Pune Junction', 'Ahmedabad Junction'),
+(12015, 'Ajmer Shatabdi', 'New Delhi', 'Ajmer Junction'),
+(1651, 'Pune Hbj Special', 'Pune Junction', 'Habibganj'),
+(13005, 'Amritsar Mail', 'Howrah Junction', 'Amritsar Junction'),
+(12002, 'Bhopal Shatabdi', 'New Delhi', 'Habibganj'),
+(12417, 'Prayag Raj Express', 'Allahabad Junction', 'New Delhi'),
+(14673, 'Shaheed Express', 'Jaynagar', 'Amritsar Junction'),
+(12314, 'Sealdah Rajdhani', 'New Delhi', 'Sealdah'),
+(12498, 'Shane Punjab', 'Amritsar Junction', 'New Delhi'),
+(12451, 'Shram Shakti Express', 'Kanpur Central', 'New Delhi'),
+(12030, 'Swarna Shatabdi', 'Amritsar Junction', 'New Delhi');
+
+
+
+
+
+
+
+
+
+INSERT INTO PASSENGERS (PNR, TNO, PNAME, GENDER, AGE, TRAVELDATE)
+VALUES
+('P001', 13005, 'R N AGRAWAL', 'MALE', 45, '2018-12-25'),
+('P002', 12015, 'P TIWARY', 'MALE', 28, '2018-11-10'),
+('P003', 12015, 'S TIWARY', 'FEMALE', 22, '2018-11-10'),
+('P004', 12030, 'K SAXENA', 'MALE', 42, '2018-10-10'),
+('P005', 12030, 'S SAXENA', 'FEMALE', 35, '2018-10-12'),
+('P006', 12030, 'P SAXENA', 'FEMALE', 12, '2018-10-12'),
+('P007', 13005, 'N S SINGH', 'MALE', 52, '2018-12-25'),
+('P008', 12030, 'J K SHARMA', 'MALE', 65, '2018-05-09'),
+('P009', 12030, 'R SHARMA', 'FEMALE', 58, '2018-05-09');
+
+
+select * from TRAINS;
+
+SELECT * 
+FROM TRAINS
+WHERE START = 'New Delhi';
+
+
+SELECT PNR, PNAME, GENDER, AGE
+FROM PASSENGERS
+WHERE AGE < 50;
+
+SELECT GENDER, COUNT(*) AS TOTAL_PASSENGERS
+FROM PASSENGERS
+GROUP BY GENDER;
+
+
+
+
+
+
+
+
+
+
+SELECT * FROM PASSENGERS
+WHERE TNO = 12015;
+
+
+SELECT MAX(TRAVELDATE), MIN(TRAVELDATE)
+FROM PASSENGERS
+WHERE GENDER = 'FEMALE';
+
+SELECT [END], COUNT(*) 
+FROM TRAINS
+GROUP BY [END]
+HAVING COUNT(*) > 1;
+
+SELECT DISTINCT TRAVELDATE
+FROM PASSENGERS;
+
+SELECT T.TNAME, P.PNAME
+FROM TRAINS T, PASSENGERS P
+WHERE T.TNO = P.TNO
+AND P.AGE BETWEEN 50 AND 60;
+
+
+CREATE TABLE SHOPPE (
+Id VARCHAR(5) PRIMARY KEY,
+SName VARCHAR(50),
+Area VARCHAR(50)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO SHOPPE (Id, SName, Area)
+VALUES
+('S01', 'ABC Computronics', 'CP'),
+('S02', 'All Infotech Media', 'GK II'),
+('S03', 'Tech Shoppe', 'CP'),
+('S04', 'Geeks Tecno Soft', 'Nehru Place'),
+('S05', 'Hitech Tech Store', 'Nehru Place');
+
+
+
+CREATE TABLE ACCESSORIES (
+No VARCHAR(5) PRIMARY KEY,
+Name VARCHAR(50),
+Price DECIMAL(10, 2),
+Id VARCHAR(5),
+FOREIGN KEY (Id) REFERENCES SHOPPE(Id)
+);
+
+
+INSERT INTO ACCESSORIES (No, Name, Price, Id)
+VALUES
+('A01', 'Mother Board', 12000, 'S01'),
+('A02', 'Hard Disk', 5000, 'S01'),
+('A03', 'Keyboard', 500, 'S02'),
+('A04', 'Mouse', 300, 'S01'),
+('A05', 'Mother Board', 13000, 'S02'),
+('A06', 'Keyboard', 400, 'S03'),
+('A07', 'LCD', 6000, 'S04'),
+('T08', 'LCD', 5500, 'S05'),
+('T09', 'Mouse', 350, 'S05'),
+('T10', 'Hard Disk', 4500, 'S03');
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT Name, Price
+FROM ACCESSORIES
+ORDER BY Price DESC;
+
+
+SELECT Id, SName
+FROM SHOPPE
+WHERE Area = 'Nehru Place';
+
+
+SELECT Name, MIN(Price) AS Min_Price, MAX(Price) AS Max_Price
+FROM ACCESSORIES
+GROUP BY Name;
+
+
+SELECT A.Name, A.Price, S.SName
+FROM ACCESSORIES A
+JOIN SHOPPE S ON A.Id = S.Id
+WHERE A.Price >= 5000;
+
+
+SELECT *
+FROM ACCESSORIES
+WHERE Name LIKE '%Board%';
+
+
+SELECT DISTINCT Name
+FROM ACCESSORIES
+WHERE Price = 5000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT Area, COUNT(*) AS Shoppe_Count
+FROM SHOPPE
+GROUP BY Area;
+
+
+SELECT AVG(Price) AS Avg_Price, MAX(Price) AS Max_Price
+FROM ACCESSORIES
+WHERE Price >= 10000;
+
+
+SELECT Name, Price * 0.95 AS Discounted_Price
+FROM ACCESSORIES
+WHERE Id IN ('S02', 'S03');
+
+
+SELECT *
+FROM SHOPPE S
+JOIN ACCESSORIES A ON S.Id = A.Id
+WHERE A.Price >= 10000;
+
+
+35.
+
+CREATE TABLE Item (
+ICode VARCHAR(10) PRIMARY KEY,
+IName VARCHAR(50),
+Price INT,
+Color VARCHAR(20),
+VCode VARCHAR(10)
+);
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO Item (ICode, IName, Price, Color, VCode)
+VALUES 
+('S001', 'Mobile Phones', 30000, 'Silver', 'P01'),
+('S002', 'Refrigerator', 20000, 'Cherry', 'P02'),
+('S003', 'TV', 45000, 'Black', 'P03'),
+('S004', 'Washing Machine', 12000, 'White', 'P04'),
+('S005', 'Air Conditioner', 50000, 'White', 'P05');
+
+SELECT * FROM Item;
+
+
+CREATE TABLE Vendor (
+VCode VARCHAR(10) PRIMARY KEY,
+VName VARCHAR(50)
+);
+
+INSERT INTO Vendor (VCode, VName)
+VALUES
+('P01', 'Rahul'),
+('P02', 'Mukesh'),
+('P03', 'Rohan'),
+('P04', 'Kapil');
+
+SELECT * FROM Vendor;
+
+SELECT ICode, IName, VName
+FROM Item
+JOIN Vendor ON Item.VCode = Vendor.VCode
+WHERE IName = 'Refrigerator';
+
+
+
+
+
+
+
+
+SELECT IName, ICode, VName, Price
+FROM Item
+JOIN Vendor ON Item.VCode = Vendor.VCode
+WHERE Price >= 23000;
+
+SELECT VName, IName
+FROM Item
+JOIN Vendor ON Item.VCode = Vendor.VCode
+WHERE Vendor.VCode = 'P04';
+
+
+Select Round(1449.58,-2);
+
+Select Round(7.5789,3);
+
+SELECT SUBSTRING('Hello Rahul', 3, 8);
+
+Select DAY('2020-10-24');
+
+36.
+
+
+CREATE TABLE Doctors (
+DocID INT PRIMARY KEY,
+DocName VARCHAR(50),
+Department VARCHAR(30),
+NoofOpdDays INT
+);
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE Patients (
+PatNo INT PRIMARY KEY,
+PatName VARCHAR(50),
+Department VARCHAR(30),
+DocId INT,
+FOREIGN KEY (DocId) REFERENCES Doctors(DocID)
+);
+
+INSERT INTO Doctors VALUES (101, 'J K Mishra', 'Ortho', 3)
+INSERT INTO Doctors VALUES (102, 'Mahesh Tripathi', 'ENT', 4)
+INSERT INTO Doctors VALUES (103, 'Ravi Kumar', 'Neuro', 5);
+INSERT INTO Doctors VALUES (104, 'Mukesh Jain', 'Physio', 3);
+
+SELECT * FROM Doctors;
+
+
+INSERT INTO Patients (PatNo, PatName, Department, DocId)
+VALUES (1, 'Payal', 'ENT', 102)
+INSERT INTO Patients VALUES (2, 'Naveen', 'Ortho', 101)
+INSERT INTO Patients VALUES (3, 'Rakesh', 'Neuro', 103)
+INSERT INTO Patients VALUES (4, 'Atul', 'Physio', 104);
+
+
+SELECT * FROM Patients;
+
+
+
+
+
+
+
+
+
+
+
+SELECT P.PatNo, P.PatName, D.DocName
+FROM Patients P
+JOIN Doctors D ON P.DocId = D.DocID;
+
+SELECT DocName
+FROM Doctors
+WHERE NoofOpdDays > 3;
+
+SELECT D.DocName, D.Department, P.PatName, D.DocID
+FROM Doctors D
+JOIN Patients P ON D.DocID = P.DocId
+WHERE D.DocID IN (101, 103)
+
+SELECT COUNT(DISTINCT Department) AS TotalDepartments
+FROM Patients;
+
+37.
+
+CREATE TABLE BANK (
+Name VARCHAR(50)
+);
+
+
+INSERT INTO BANK (Name) VALUES ('SACHIN');
+INSERT INTO BANK (Name) VALUES ('RAMESH');
+INSERT INTO BANK (Name) VALUES ('DINESH');
+INSERT INTO BANK (Name) VALUES ('VIKAASH');
+INSERT INTO BANK (Name) VALUES ('RAJU');
+INSERT INTO BANK (Name) VALUES ('AMRITESH');
+
+
+
+
+
+
+
+
+
+SELECT * FROM BANK;
+
+
+SELECT * FROM BANK 
+WHERE Name LIKE '%ES%';
+
+
+SELECT * FROM BANK 
+WHERE Name LIKE 'SH';
+
+
+38.
+CREATE TABLE T_Employee (
+Name VARCHAR(50),
+Project VARCHAR(50)
+);
+
+INSERT INTO T_Employee (Name, Project) VALUES ('RAJESH', NULL);
+INSERT INTO T_Employee (Name, Project) VALUES ('RAMESH', 'ProjectA');
+INSERT INTO T_Employee (Name, Project) VALUES ('RAVI', NULL);
+INSERT INTO T_Employee (Name, Project) VALUES ('SACHIN', 'ProjectB');
+
+SELECT * FROM T_Employee 
+WHERE Name LIKE 'R%' 
+AND Project IS NULL;
+
+
+
+
+
+
+
+
+
+39.
+
+CREATE TABLE Visitor (
+VisitorID INT PRIMARY KEY,
+VisitorName VARCHAR(50),
+Gender CHAR(1),
+ComingFrom VARCHAR(50),
+AmountPaid INT
+);
+
+INSERT INTO Visitor (VisitorID, VisitorName, Gender, ComingFrom, AmountPaid)
+VALUES (1, 'Suman', 'F', 'Kanpur', 2500),
+(2, 'Indu', 'F', 'Lucknow', 3000),
+(3, 'Rachana', 'F', 'Haryana', 2000),
+(4, 'Vikram', 'M', 'Kanpur', 4000),
+(5, 'Rajesh', 'M', 'Kanpur', 3000),
+(6, 'Suresh', 'M', 'Allahabad', 3600),
+(7, 'Dinesh', 'M', 'Lucknow', 0), -- AmountPaid is assumed to be 0 as it's not provided
+(8, 'Shikha', 'F', 'Varanasi', 5000);
+
+
+SELECT * FROM Visitor;
+
+SELECT VisitorName, ComingFrom FROM Visitor
+WHERE Gender = 'F' AND AmountPaid > 3000;
+
+
+
+
+
+
+
+
+
+
+
+SELECT DISTINCT ComingFrom  FROM Visitor;
+
+if i do INSERT INTO and putting valu directly as like question it will come error because already 7 rows i have. so have to update 7 with new mention information
+
+UPDATE Visitor
+SET VisitorName = 'Shilpa', Gender = 'F', ComingFrom = 'Lucknow', AmountPaid = 3000
+WHERE VisitorID = 7;
+
+SELECT * FROM Visitor;
+
+SELECT * FROM Visitor
+ORDER BY AmountPaid DESC;
+
+SELECT VisitorName FROM Visitor
+WHERE Gender = 'M';
+
+SELECT AmountPaid + 200
+FROM Visitor
+WHERE VisitorID = 6;
+
+SELECT SUM(AmountPaid)
+FROM Visitor
+WHERE ComingFrom = 'Kanpur';
+
+
+
+
+
+
+
+
+
+
+
+SELECT COUNT(VisitorName)
+FROM Visitor
+WHERE AmountPaid IS NULL;
+
+
+40.
+CREATE TABLE MEMBER (
+ID CHAR(6), -- ID with exactly 6 characters
+Name VARCHAR(30), -- Name with up to 30 characters
+Fee INT, -- Fee as an integer (no length specifier needed, so i cant put Fee int (10))
+DOJ DATE -- Date of Joining
+);
+
+SELECT * FROM MEMBER;
+
+
+41. ALTER TABLE changes the table’s schema, while UPDATE changes the data within the table.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42.
+CREATE TABLE emp_employee (
+empno INT PRIMARY KEY, -- Employee number, a unique identifier for each employee
+first_name VARCHAR(50), -- Employee's first name
+last_name VARCHAR(50), -- Employee's last name
+salary DECIMAL(10, 2), -- Salary of the employee (numeric, with 2 decimal places)
+department VARCHAR(50), -- Department of the employee
+hire_date DATE, -- Hire date of the employee
+birthdate DATE, -- Birthdate of the employee
+email VARCHAR(100), -- Employee's email address
+phone_number VARCHAR(15) -- Employee's phone number
+);
+
+INSERT INTO emp_employee (empno, first_name, last_name, salary, department, hire_date, birthdate, email, phone_number)
+VALUES
+(1234, 'John', 'Dolon', 4000.00, 'IT', '2020-05-15', '1990-08-21', 'n.dolon@example.com', '123-456-7890'),
+(1236, 'Jane', 'Smith', 7000.00, 'HR', '2018-03-20', '1985-07-14', 'jane.smith@example.com', '987-654-3210'),
+(1237, 'Raj', 'Kumar', 8000.00, 'Finance', '2019-11-10', '1992-01-30', 'raj.kumar@example.com', '555-123-4567');
+
+SELECT * FROM emp_employee;
+
+SELECT * FROM emp_employee WHERE salary BETWEEN 4000 AND 8000;
+
+
+
+
+
+
+
+
+SELECT * FROM emp_employee WHERE CAST(salary AS DECIMAL) BETWEEN 4000 AND 8000;
+
+DELETE FROM emp_employee;
+
+44.
+ALTER TABLE emp_employee
+DROP COLUMN phone_number;
+
+45. hereans will be,  5*5= 25 rows and  4+3= 7column
+CREATE TABLE e_Employee (
+empno INT PRIMARY KEY, -- Employee Number
+first_name VARCHAR(50), -- First Name
+last_name VARCHAR(50), -- Last Name
+salary DECIMAL(10, 2) -- Salary
+);
+
+
+CREATE TABLE Project (
+project_id INT PRIMARY KEY, -- Project ID
+project_name VARCHAR(100), -- Project Name
+start_date DATE -- Project Start Date
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO e_Employee (empno, first_name, last_name, salary)
+VALUES
+(1, 'John', 'Doe', 5000.00),
+(2, 'Jane', 'Smith', 6000.00),
+(3, 'Raj', 'Kumar', 5500.00),
+(4, 'Alice', 'Brown', 6500.00),
+(5, 'Bob', 'Taylor', 7000.00);
+
+
+INSERT INTO Project (project_id, project_name, start_date)
+VALUES
+(101, 'Alpha', '2023-01-10'),
+(102, 'Beta', '2023-02-20'),
+(103, 'Gamma', '2023-03-15'),
+(104, 'Delta', '2023-04-01'),
+(105, 'Epsilon', '2023-05-05');
+
+
+SELECT * FROM e_Employee, Project;
+
+
+46. i created table named e_Employee where endname j
+
+
+SELECT * FROM e_Employee WHERE First_name LIKE '%j';
+
+
+
+
+
+
+
+
+
+
+
+46.
+
+CREATE TABLE Employee_A (
+EMPNO INT PRIMARY KEY,
+ENAME VARCHAR(50),
+DEPT VARCHAR(50),
+SALARY DECIMAL(10, 2),
+COMM DECIMAL(10, 2)
+);
+
+DROP TABLE Employee_A
+
+INSERT INTO Employee_A (EMPNO, ENAME, DEPT, SALARY, COMM)
+VALUES
+(1, 'ANKIT', 'HR', 20000, 1200),
+(2, 'SUJEET', 'ACCOUNTS', 24000, 0),
+(3, 'VIJAY', 'HR', 28000, 2000),
+(4, 'NITIN', 'SALES', 18000, 3000),
+(5, 'VIKRAM', 'SALES', 22000, 1700);
+
+
+SELECT * FROM Employee_A;
+
+
+SELECT ENAME, SALARY FROM Employee_A 
+WHERE ENAME LIKE 'V%' 
+ORDER BY SALARY ASC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT * FROM Employee_A
+WHERE DEPT = 'SALES' 
+AND SALARY > 20000;
+
+SELECT COUNT(DISTINCT DEPT) AS distinct_departments 
+FROM Employee_A;
+
+UPDATE Employee_A
+SET SALARY = 20000 
+WHERE ENAME = 'NITIN';
+
+INSERT INTO Employee_A (EMPNO, ENAME, DEPT, SALARY, COMM) 
+VALUES (6, 'SUMIT', 'HR', 40000, 2000);
+
+
+SELECT AVG(COMM) AS average_comm FROM Employee_A;
+
+SELECT ENAME, DEPT 
+FROM Employee_A 
+WHERE DEPT IN ('HR', 'ACCOUNTS');
+
+SELECT ENAME, SALARY + 100 AS NEWSAL 
+FROM Employee_A;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+48.
+
+CREATE TABLE ENQUIRY (
+visitorID DECIMAL(4, 0) PRIMARY KEY, -- 4 digits, primary key
+visitorName VARCHAR(20), -- Name of visitor, max 20 characters
+visitorMobile CHAR(10) NOT NULL, -- Mobile number, 10 characters, cannot be null
+visitorAddress VARCHAR(40) -- Address of visitor, max 40 characters
+);
+
+49.
+
+CREATE TABLE Doctor (
+DocID VARCHAR(10) PRIMARY KEY,
+DocName VARCHAR(50),
+Specialist VARCHAR(50)
+);
+
+INSERT INTO Doctor (DocID, DocName, Specialist)
+VALUES
+('D001', 'Vimal Jha', 'Cardio'),
+('D002', 'Sunil Bawra', 'Ortho'),
+('D003', 'Mukul Barman', 'Surgeon'),
+('D004', 'Nitesh Solanki', 'Skin');
+
+
+SELECT * FROM Doctor;
+
+
+
+
+
+
+
+
+
+CREATE TABLE Patient (
+PatID VARCHAR(10) PRIMARY KEY,
+PatName VARCHAR(50),
+DateAdm DATE,
+DocID VARCHAR(10),
+FOREIGN KEY (DocID) REFERENCES Doctor(DocID)
+);
+
+
+INSERT INTO Patient (PatID, PatName, DateAdm, DocID)
+VALUES
+('P001', 'Kapil', '2013-10-10', 'D002'),
+('P002', 'Susheel', '2013-09-01', 'D001'),
+('P003', 'Wasim', '2013-10-15', 'D002'),
+('P004', 'Sanjay', '2013-10-12', 'D003'),
+('P005', 'Jai', '2013-10-17', 'D003');
+
+SELECT * FROM Patient;
+
+
+SELECT P.PatID, P.PatName, D.DocName 
+FROM Patient P 
+JOIN Doctor D 
+ON P.DocID = D.DocID 
+WHERE D.Specialist IN ('Cardio', 'Ortho');
+
+
+
+
+
+
+
+SELECT D.DocName, P.PatName 
+FROM Patient P 
+JOIN Doctor D 
+ON P.DocID = D.DocID 
+WHERE P.DateAdm < '2013-10-15';
+
+
+SELECT ROUND(55.698, 2);
+
+SELECT SUBSTRING('examination', 4, 4);
+
+SELECT ROUND(4562.778, -2);
+
+SELECT LEN(LTRIM(RTRIM(' exam ')));
+
+52. WHERE: Used to filter records before any grouping operations (i.e., it filters rows from the result set before the GROUP BY clause).
+Cannot be used with aggregate functions like COUNT(), SUM(), etc., unless it's inside a subquery.
+SELECT * FROM Employee_A
+WHERE salary > 20000;
+
+
+
+
+Used to filter records after a GROUP BY operation (i.e., it filters groups created by the GROUP BY clause).
+
+SELECT dept, COUNT(*) 
+FROM Employee_A
+GROUP BY dept
+HAVING COUNT(*) > 5;
+
+%:
+Represents zero or more characters in a LIKE pattern.
+Example: 'A%' matches any string starting with the letter 'A' (like 'Apple', 'Almond', etc.).
+_:
+Represents exactly one character in a LIKE pattern.
+Example: 'A_' matches any string starting with 'A' and followed by exactly one character (like 'An', 'Ab', etc.).
+CHAR: Fixed-length string.
+Always occupies the same amount of space regardless of the actual content size.
+VARCHAR: Variable-length string.
+
+
+
+Occupies only as much space as the string content, up to the maximum length specified
+51.
+CREATE TABLE Student (
+Id INT PRIMARY KEY,
+Name VARCHAR(50),
+Stipend INT,
+Subject VARCHAR(50),
+Average INT,
+Div INT
+);
+
+CREATE TABLE Guide (
+Subject VARCHAR(50) PRIMARY KEY,
+Advisor VARCHAR(50)
+);
+
+
+
+
+
+
+
+
+
+
+INSERT INTO Student (Id, Name, Stipend, Subject, Average, Div) VALUES
+(1, 'KARAN', 400, 'PHYSICS', 68, 1),
+(2, 'DIVAKAR', 450, 'COMP SC', 68, 1),
+(3, 'DIVYA', 300, 'CHEMISTRY', 62, 2),
+(4, 'ARUN', 350, 'PHYSICS', 63, 1),
+(5, 'SABINA', 500, 'MATHS', 70, 1),
+(6, 'JOHN', 400, 'CHEMISTRY', 55, 2),
+(7, 'ROBERT', 250, 'PHYSICS', 64, 1),
+(8, 'RUBINA', 450, 'MATHS', NULL, NULL),
+(9, 'VIKAS', 500, 'COMP SC', 62, 1),
+(10, 'MOHAN', 300, 'MATHS', 57, 2);
+
+INSERT INTO Guide (Subject, Advisor) VALUES
+('PHYSICS', 'ALOK'),
+('COMP SC', 'RAJAN'),
+('CHEMISTRY', 'MANJU'),
+('MATHS', 'SMITA'),
+('HISTORY', 'KISHORE');
+
+SELECT * FROM Student;
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT * FROM Guide;
+
+
+SELECT Student.Name, Student.Subject, Guide.Advisor
+FROM Student
+JOIN Guide ON Student.Subject = Guide.Subject;
+
+
+SELECT Student.Name, Guide.Advisor
+FROM Student
+JOIN Guide ON Student.Subject = Guide.Subject
+WHERE Student.Subject IN ('PHYSICS', 'CHEMISTRY');
+
+53.
+
+Select Substring('mysql application', 3, 3);
+
+SELECT CHARINDEX('p', 'mysql application');
+
+Select round(7756.452, 1);
+
+Select round(59999.99, -2);
+
+Select right('mysql application', 3);
