@@ -1,4 +1,4 @@
-SQL developer| Docker| Python| AWS|Azure| Devops
+Data Analytics| SQL developer| Docker| Python| AWS|Azure| Devops
 
 - 👋 Hi, I’m Fatema Tuj Johura recent graduated students Msc Data Science and Analytics with Advanced research from University of Hertfordshire Uk. Currently conducting Devops course throug AWS
 - 👀 I’m interested in problem solving, coding
